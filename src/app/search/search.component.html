@@ -1,19 +1,24 @@
-<div class="container">
+<form novalidate [formGroup]="searchForm">
+  <div class="container">
     <div class="row">
+
       <div class="col-xs-12 col-md-12">
         <label>
           <h3> Qué deseas buscar? </h3>
         </label>
-        <mat-radio-group>
-          <mat-radio-button value="1"> Movies </mat-radio-button>
-          <mat-radio-button value="2"> Actors </mat-radio-button>
+        <mat-radio-group formControlName="searchType">
+          <mat-radio-button *ngFor="let stype of searchType" [value]="stype"> {{stype}} </mat-radio-button>       
         </mat-radio-group>
       </div>
-      <div class="col-md-12">      
-        <mat-form-field class="form-field-full-width">          
-            <i class="material-icons icon-right">search</i>
-            <input matInput type="search" placeholder="Buscar">
+      <div class="col-md-12">
+        <mat-form-field class="form-field-full-width" dividerColor="{{(formErrors.query)?'warn':'primary'}}">
+          <i class="material-icons icon-right">search</i>
+          <input matInput formControlName="query" type="search" placeholder="Buscar">
+          <mat-hint>
+            <span [hidden]="!(formErrors.query)">{{formErrors.query}} </span>
+          </mat-hint>
         </mat-form-field>
       </div>
     </div>
   </div>
+</form>
