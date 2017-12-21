@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Search, SearchType } from '../shared/search';
 import 'rxjs/add/operator/map';
@@ -27,7 +27,9 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    @Inject('BaseURL') private BaseURL, 
+    @Inject('ImagesURL') private ImagesURL) {
     this.createForm();
   }
 

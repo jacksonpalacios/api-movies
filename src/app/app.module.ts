@@ -23,12 +23,16 @@ import {
 } from '@angular/material';
 import 'hammerjs';
 
+import { baseURL, imagesURL } from './shared/baseurl';
+
 import { AppComponent } from './app.component';
 import { Pipe } from '@angular/core/src/metadata/directives';
+
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SearchComponent } from './search/search.component';
+import { SearchService } from './services/search.service';
 
 
 @NgModule({
@@ -61,7 +65,11 @@ import { SearchComponent } from './search/search.component';
     MatRadioModule
 
   ],
-  providers: [],  
+  providers: [
+    SearchService,
+    { provide: 'BaseURL', useValue: baseURL },
+    { provide: 'ImagesURL', useValue: imagesURL }
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
