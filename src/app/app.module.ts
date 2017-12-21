@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import {
   MatCheckbox,
   MatFormField,
+  MatIconModule,
   MatCardModule,
   MatListModule,
   MatInputModule,
@@ -17,15 +18,16 @@ import {
   MatGridListModule,
   MatFormFieldModule,
   MatSlideToggleModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatRadioModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { Pipe } from '@angular/core/src/metadata/directives';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     HttpModule,
     FormsModule,
+    MatIconModule,
     MatListModule,
     MatCardModule,
     BrowserModule,
@@ -44,7 +47,7 @@ import { FooterComponent } from './footer/footer.component';
     MatDialogModule,    
     MatSelectModule,
     MatButtonModule,
-    FlexLayoutModule,
+    AppRoutingModule,   
     MatToolbarModule,
     MatGridListModule,
     MatCheckboxModule,
@@ -52,7 +55,8 @@ import { FooterComponent } from './footer/footer.component';
     ReactiveFormsModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule
 
   ],
   providers: [],  

@@ -1,3 +1,40 @@
-<p>
-  header works!
-</p>
+<mat-toolbar color="primary">
+  <div class="container">
+    <span> Movies </span> |
+    <!--<a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>-->
+
+    <a mat-button>
+      <i class="material-icons">home</i> Home</a>
+    <a mat-button>
+      <i class="material-icons">movie</i> Movies</a>
+    <a mat-button>
+      <i class="material-icons">face</i> Actors</a>
+    <!--<a mat-button ><span class="fa fa-address-card fa-lg"></span> My List</a>-->
+    <a mat-button>
+      <i class="material-icons">bubble_chart</i> About</a>
+    <!-- <a mat-button ><span class="fa fa-address-card fa-lg"></span> Idioma</a>-->
+    <span class="flex-spacer"></span>
+    <!--<a mat-button> <i class="material-icons">input</i> Login </a>-->
+  </div>
+</mat-toolbar>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <label>
+        <h3> Qué deseas buscar? </h3>
+      </label>
+      <mat-radio-group>
+        <mat-radio-button value="1"> Movies </mat-radio-button>
+        <mat-radio-button value="2"> Actors </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="col-md-12">      
+      <mat-form-field class="example-full-width">          
+          <i class="material-icons icon-right">search</i>
+          <input matInput type="search" placeholder="Buscar">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
