@@ -1,2 +1,2 @@
-export const baseURL = 'https://api.themoviedb.org/3/';
-export const imagesURL = 'https://image.tmdb.org/t/p/';
+export const BaseURL = 'https://api.themoviedb.org/3/';
+export const ImagesURL = 'https://image.tmdb.org/t/p/';

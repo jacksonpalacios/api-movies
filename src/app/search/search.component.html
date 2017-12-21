@@ -7,7 +7,7 @@
           <h3> Qué deseas buscar? </h3>
         </label>
         <mat-radio-group formControlName="searchType">
-          <mat-radio-button *ngFor="let stype of searchType" [value]="stype"> {{stype}} </mat-radio-button>       
+          <mat-radio-button *ngFor="let stype of searchType" [value]="stype"> {{stype}} </mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="col-md-12">
@@ -17,8 +17,17 @@
           <mat-hint>
             <span [hidden]="!(formErrors.query)">{{formErrors.query}} </span>
           </mat-hint>
-        </mat-form-field>        
+        </mat-form-field>
       </div>
     </div>
   </div>
 </form>
+<div class="container">  
+  <div class="row" *ngIf="actors">
+    <div class="col-md-4" *ngFor="let actor of actors">
+      {{actor.name}} <br>
+      <img src="{{ImagesURL}}/w92{{actor.profile_path}}" alt="">
+    </div>
+  </div>
+</div>
+<br>

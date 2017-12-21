@@ -2,6 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Search, SearchType } from '../shared/search';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import { SearchService } from '../services/search.service';
+import { Actor } from '../shared/actor';
+import { CollectionActors } from '../shared/collectionactors';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +21,10 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   search: Search;
   searchType = SearchType;
+  page:number;
+
+  private errMess: string;
+  public actors: CollectionActors;  
 
   formErrors = {
     'query': ''
@@ -28,36 +38,47 @@ export class SearchComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-    @Inject('BaseURL') private BaseURL, 
+    private searchService: SearchService,
+    @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) {
+    this.page = 1;    
+        
     this.createForm();
+    
   }
 
   ngOnInit() {
   }
 
   createForm() {
+    
     this.searchForm = this.fb.group({
-      query: ['', [Validators.minLength(2), Validators.maxLength(25)]],
-      searchType: 'Movies'
+      query: ['', [Validators.minLength(3), Validators.maxLength(25)]],
+      searchType: 'Movies'      
     });
 
+    this.searchForm.controls.query.valueChanges
+      .filter((searchText: string) => { return searchText.length > 2 })
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe(query => {        
+        return this.searchService.getSearchActors(query)
+          .subscribe(res => {
+            this.actors = res['results'];   
+            console.log(this.actors);                   
+          },
+          errmess => this.errMess = <any>errmess);
+
+      });    
     this.searchForm.valueChanges
-    .map(data => {
-      console.log(data.query);
-      return data;
-    })
-    .subscribe(data => {      
-      this.onValueChanged(data);
-    });
-   
-     
+    .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged();
+    
   }
 
   onValueChanged(data?: any) {
-    
+
     if (!this.searchForm) {
       return;
     }
