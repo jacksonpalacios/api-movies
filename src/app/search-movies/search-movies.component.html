@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row" *ngIf="movies">
-    <div class="col-md-4" *ngFor="let movie of movies">
+    <div class="col-md-4" *ngFor="let movie of movies" [routerLink]="['/search/movie-detail', movie.id]">
       <br>
       <h5>
         {{movie.title}} |

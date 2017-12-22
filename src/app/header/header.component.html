@@ -12,7 +12,7 @@
     <a mat-button routerLink="/actors" routerLinkActive="active">
       <i class="material-icons">face</i> Actors
     </a>
-    <a mat-button routerLink="/search" routerLinkActive="active">
+    <a mat-button [routerLink]="['/search', '?']"  routerLinkActive="active">
       <i class="material-icons">search</i> Search
     </a>
     <a mat-button routerLink="/about" routerLinkActive="active">

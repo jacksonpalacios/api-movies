@@ -19,8 +19,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 export class SearchActorsComponent implements OnInit {
 
-  private errMess: string;
-  public actors: CollectionActors;
+  errMess: string;
+  actors: CollectionActors;
   
   constructor(
     private searchService: SearchService,

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row" *ngIf="movie">
+    <div class="col-md-12">
+      <h1> {{movie.title}}
+      </h1>
+      <hr class="line">
+      <h3>
+        <small>{{movie.tagline}} - voto promedio: {{movie.vote_average}} - fecha lanzamiento {{movie.release_date}}</small>
+      </h3>
+    </div>
+    <div class="col-md-9">
+      <img src="{{ImagesURL}}/w780{{movie.backdrop_path}}" class="img-responsive" *ngIf="movie.backdrop_path; else noImagesBlock"
+        alt="">
+      <ng-template #noImagesBlock>
+        <img class="img-responsive" src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
+          alt="">
+      </ng-template>
+    </div>
+    <div class="col-md-3">
+      <ul>
+        <li>Imagenes</li>
+        <li>Videos - "Trailers"</li>        
+      </ul>
+      ** Favoritos - ** Agregar a mi Listas - ** Votar
+    </div>
+    <div class="col-md-9">
+
+      <h4>
+        Sinopsis:
+      </h4>
+      <p>
+        {{movie.overview}}
+      </p>
+
+    </div>
+  </div>
+</div>

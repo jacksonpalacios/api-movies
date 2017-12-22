@@ -41,6 +41,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { MoviesComponent } from './movies/movies.component';
 import { ActorsComponent } from './actors/actors.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { MoviesService } from './services/movies.service';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { ActorsComponent } from './actors/actors.component';
     HomeComponent,
     AboutComponent,
     MoviesComponent,
-    ActorsComponent 
+    ActorsComponent,
+    MovieDetailComponent 
   ],
   imports: [
     HttpModule,
@@ -81,6 +84,7 @@ import { ActorsComponent } from './actors/actors.component';
   ],
   providers: [
     SearchService,
+    MoviesService,
     ProcessHttpmsgService,
     { provide: 'BaseURL', useValue: BaseURL },
     { provide: 'ImagesURL', useValue: ImagesURL }

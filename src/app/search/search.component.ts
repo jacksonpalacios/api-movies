@@ -2,6 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Search, SearchType } from '../shared/search';
 
+import { Params, ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+
+import 'rxjs/add/operator/switchMap';
+
 import { SearchService } from '../services/search.service';
 import { CollectionActors } from '../shared/collectionactors';
 import { CollectionMovies } from '../shared/collectionmovies';
@@ -33,7 +38,10 @@ export class SearchComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router) {
     this.page = 1;
     this.createForm();
   }
@@ -46,15 +54,28 @@ export class SearchComponent implements OnInit {
    Se crea el formulario reactivo
   */
   createForm() {
-
+    let p:string = "";
+    this.route.params
+      .switchMap((params: Params) => params['query'])
+      .subscribe(res => {
+        p += res;        
+      });
+    p = p=="?"?"":p;
     this.searchForm = this.fb.group({
       query: ['', [Validators.minLength(3), Validators.maxLength(25)]],
       valueSearchType: 'Movies'
     });
 
+    this.searchForm.controls.query.setValue(p);    
+
+    this.searchForm.controls.query.valueChanges
+      .subscribe(res => {        
+        this.router.navigate(['/search', res]);
+      });
+
     /*
       Se realiza la petición cada vez query cambie de valor
-    */    
+    */
     this.searchForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
 
