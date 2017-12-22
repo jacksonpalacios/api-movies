@@ -37,6 +37,10 @@ import { SearchService } from './services/search.service';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 import { SearchActorsComponent } from './search-actors/search-actors.component';
 import { SearchMoviesComponent } from './search-movies/search-movies.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { MoviesComponent } from './movies/movies.component';
+import { ActorsComponent } from './actors/actors.component';
 
 
 @NgModule({
@@ -46,7 +50,11 @@ import { SearchMoviesComponent } from './search-movies/search-movies.component';
     FooterComponent,
     SearchComponent,
     SearchActorsComponent,
-    SearchMoviesComponent 
+    SearchMoviesComponent,
+    HomeComponent,
+    AboutComponent,
+    MoviesComponent,
+    ActorsComponent 
   ],
   imports: [
     HttpModule,

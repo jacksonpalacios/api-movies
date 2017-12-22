@@ -1,17 +1,25 @@
 <mat-toolbar color="primary" class="my-toolbar">
   <div class="container">
     <span> Movies </span> |
-    <!--<a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>-->
+    <!--<a mat-button ><span class="fa fa-home fa-lg"></span> Home</a>-->
 
-    <a mat-button>
-      <i class="material-icons">home</i> Home</a>
-    <a mat-button>
-      <i class="material-icons">movie</i> Movies</a>
-    <a mat-button>
-      <i class="material-icons">face</i> Actors</a>
+    <a mat-button routerLink="/home" routerLinkActive="active">
+      <i class="material-icons">home</i> Home
+    </a>
+    <a mat-button routerLink="/movies" routerLinkActive="active">
+      <i class="material-icons">movie</i> Movies
+    </a>
+    <a mat-button routerLink="/actors" routerLinkActive="active">
+      <i class="material-icons">face</i> Actors
+    </a>
+    <a mat-button routerLink="/search" routerLinkActive="active">
+      <i class="material-icons">search</i> Search
+    </a>
+    <a mat-button routerLink="/about" routerLinkActive="active">
+      <i class="material-icons">bubble_chart</i> About
+    </a>
     <!--<a mat-button ><span class="fa fa-address-card fa-lg"></span> My List</a>-->
-    <a mat-button>
-      <i class="material-icons">bubble_chart</i> About</a>
+
     <!-- <a mat-button ><span class="fa fa-address-card fa-lg"></span> Idioma</a>-->
     <span class="flex-spacer"></span>
     <!--<a mat-button> <i class="material-icons">input</i> Login </a>-->
@@ -21,4 +29,4 @@
 <br>
 <br>
 <br>
-<app-search></app-search>
+<br>
