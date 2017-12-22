@@ -35,6 +35,8 @@ import { SearchComponent } from './search/search.component';
 
 import { SearchService } from './services/search.service';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
+import { SearchActorsComponent } from './search-actors/search-actors.component';
+import { SearchMoviesComponent } from './search-movies/search-movies.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { ProcessHttpmsgService } from './services/process-httpmsg.service';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SearchComponent 
+    SearchComponent,
+    SearchActorsComponent,
+    SearchMoviesComponent 
   ],
   imports: [
     HttpModule,

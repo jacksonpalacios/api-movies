@@ -6,7 +6,6 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { SearchService } from '../services/search.service';
-import { Actor } from '../shared/actor';
 import { CollectionActors } from '../shared/collectionactors';
 
 @Component({
@@ -21,6 +20,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   search: Search;
   searchType = SearchType;
+  valueSearchType:string;
   page:number;
 
   private errMess: string;
@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
     
     this.searchForm = this.fb.group({
       query: ['', [Validators.minLength(3), Validators.maxLength(25)]],
-      searchType: 'Movies'      
+      valueSearchType: 'Movies'      
     });
 
     this.searchForm.controls.query.valueChanges
