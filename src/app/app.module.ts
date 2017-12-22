@@ -76,7 +76,7 @@ import { SearchMoviesComponent } from './search-movies/search-movies.component';
     ProcessHttpmsgService,
     { provide: 'BaseURL', useValue: BaseURL },
     { provide: 'ImagesURL', useValue: ImagesURL }
-  ],  
+  ],   
   bootstrap: [AppComponent]
 })
 export class AppModule { }

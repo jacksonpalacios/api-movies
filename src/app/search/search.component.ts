@@ -1,12 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Search, SearchType } from '../shared/search';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+
 import { SearchService } from '../services/search.service';
 import { CollectionActors } from '../shared/collectionactors';
+import { CollectionMovies } from '../shared/collectionmovies';
+import { SearchActorsComponent } from '../search-actors/search-actors.component';
 
 @Component({
   selector: 'app-search',
@@ -14,17 +13,13 @@ import { CollectionActors } from '../shared/collectionactors';
   styleUrls: ['./search.component.scss']
 })
 
-
-
 export class SearchComponent implements OnInit {
-  searchForm: FormGroup;
+  page: number;
   search: Search;
+  searchForm: FormGroup;
   searchType = SearchType;
-  valueSearchType:string;
-  page:number;
-
-  private errMess: string;
-  public actors: CollectionActors;  
+  valueSearchType: string;
+  searchQuery: string;
 
   formErrors = {
     'query': ''
@@ -37,54 +32,42 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder,
-    private searchService: SearchService,
-    @Inject('BaseURL') private BaseURL,
-    @Inject('ImagesURL') private ImagesURL) {
-    this.page = 1;    
-        
+
+  constructor(private fb: FormBuilder) {
+    this.page = 1;
     this.createForm();
-    
   }
 
   ngOnInit() {
+
   }
 
+  /*
+   Se crea el formulario reactivo
+  */
   createForm() {
-    
+
     this.searchForm = this.fb.group({
       query: ['', [Validators.minLength(3), Validators.maxLength(25)]],
-      valueSearchType: 'Movies'      
+      valueSearchType: 'Movies'
     });
 
-    this.searchForm.controls.query.valueChanges
-      .filter((searchText: string) => { return searchText.length > 2 })
-      .debounceTime(500)
-      .distinctUntilChanged()
-      .subscribe(query => {        
-        return this.searchService.getSearchActors(query)
-          .subscribe(res => {
-            this.actors = res['results'];   
-            console.log(this.actors);                   
-          },
-          errmess => this.errMess = <any>errmess);
-
-      });    
-    this.searchForm.valueChanges
-    .subscribe(data => this.onValueChanged(data));
-
+    /*
+      Se realiza la petición cada vez query cambie de valor
+    */    
+    this.searchForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
-    
+
   }
 
+  /*
+    Validad los campos cada vez que el formulario cambia de valor
+   */
   onValueChanged(data?: any) {
-
     if (!this.searchForm) {
       return;
     }
-
     const form = this.searchForm;
-
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);

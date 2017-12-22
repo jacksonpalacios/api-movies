@@ -46,4 +46,20 @@ export class SearchService {
     });
   }
 
+  getSearchMovies(query): Observable<Actor[]>{
+    let nextURL = 'search/movie';
+    let params = new URLSearchParams();
+    let url = BaseURL + nextURL;
+
+    params.set('api_key', ApiKey);
+    params.set('language',this.language);
+    params.set('query',query);
+    params.set('page',this.page);
+    params.set('include_adult',IncludeAdult);    
+
+    return this.http.get(url, { params: params }).map(res => {
+      return this.processHTTPMsg.extracData(res);
+    });
+  }
+
 }

@@ -13,7 +13,7 @@
       <div class="col-md-12">
         <mat-form-field class="form-field-full-width" dividerColor="{{(formErrors.query)?'warn':'primary'}}">
           <i class="material-icons icon-right">search</i>
-          <input matInput formControlName="query" type="search" placeholder="Buscar">
+          <input matInput formControlName="query" type="search" id="query" placeholder="Buscar">
           <mat-hint>
             <span [hidden]="!(formErrors.query)">{{formErrors.query}} </span>
           </mat-hint>
@@ -22,4 +22,5 @@
     </div>
   </div>
 </form>
-<app-search-actors [actors]="actors"  *ngIf="searchForm.controls.valueSearchType.value == 'Actors'"></app-search-actors>
+<app-search-actors *ngIf="searchForm.controls.valueSearchType.value == 'Actors'"></app-search-actors>
+<app-search-movies *ngIf="searchForm.controls.valueSearchType.value == 'Movies'"></app-search-movies>
