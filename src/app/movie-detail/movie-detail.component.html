@@ -16,14 +16,27 @@
           alt="">
       </ng-template>
     </div>
+
     <div class="col-md-3">
-      <ul>
-        <li>Imagenes</li>
-        <li>Videos - "Trailers"</li>        
-      </ul>
-      ** Favoritos - ** Agregar a mi Listas - ** Votar
+      <h4>Opciones: </h4>
+      <button mat-button matTooltip="Ver videos!">
+        <i class="material-icons">play_circle_outline</i> Trailer
+      </button>
+
+      <hr>
+      <h4>Acciones: </h4>
+      <button mat-icon-button matTooltip="Votar!">
+          <i class="material-icons">star</i>
+        </button>
+      <button mat-icon-button matTooltip="Agregar a favorito">
+        <i class="material-icons">favorite_border</i>
+      </button>
+      <button mat-icon-button matTooltip="Agregar a mi lista">
+        <i class="material-icons">playlist_add</i>
+      </button>
+
     </div>
-    <div class="col-md-9">
+    <div class="col-md-12">
 
       <h4>
         Sinopsis:
@@ -34,4 +47,7 @@
 
     </div>
   </div>
+</div>
+<div *ngIf="movie">
+  <app-gallery-images [imagesmovie]="movie.images"></app-gallery-images>
 </div>
