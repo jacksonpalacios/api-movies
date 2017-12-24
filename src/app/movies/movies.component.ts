@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
-import { Movie } from '../shared/movie';
+import { CollectionMovies } from '../shared/collectionmovies';
 
 
 @Component({
@@ -9,19 +9,38 @@ import { Movie } from '../shared/movie';
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  movie: Movie;
-  errMess: string;
+  moviesPopularity: CollectionMovies;
+  moviesNowPlaying: CollectionMovies;
+  errMessPopularity: string;
+  errMessNowPlaying: string;
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService,
+    @Inject('BaseURL') private BaseURL,
+    @Inject('ImagesURL') private ImagesURL) { }
 
   ngOnInit() {
 
-    return this.moviesService.getMovie('550')
+    this.getNowPlaying();
+    this.getPopularity();
+    
+  }
+
+  getNowPlaying(){
+    return this.moviesService.getMoviesNowPlaying()
       .subscribe(res => {
-        this.movie = res['results'];
-        console.log(this.movie);
+        this.moviesNowPlaying = res['results'];
+        console.log(this.moviesNowPlaying);
       },
-      errmess => this.errMess = <any>errmess);
+      errmess => this.errMessNowPlaying = <any>errmess);
+  }
+
+  getPopularity(){
+    return this.moviesService.getMoviesSortByPopularity()
+      .subscribe(res => {
+        this.moviesPopularity = res['results'];
+        console.log(this.moviesPopularity);
+      },
+      errmess => this.errMessPopularity = <any>errmess);
   }
 
 

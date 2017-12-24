@@ -1,7 +1,48 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="moviesNowPlaying">
     <div class="col-md-12">
-      Movies
+      <h1>Películas en Estreno</h1>
+    </div>
+    <div class="col-md-4" *ngFor="let movie of moviesNowPlaying" [routerLink]="['/movies/movie-detail', movie.id]">
+      <br>
+      <h5>
+        {{movie.title}} |
+        <small>{{movie.popularity}}</small>
+      </h5>
+
+
+      <img src="{{ImagesURL}}/w154{{movie.poster_path}}" height="231" *ngIf="movie.poster_path; else noImagesBlock" alt="">
+      <ng-template #noImagesBlock>
+        <img src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
+          height="231" width="154px" alt="">
+      </ng-template>
+
+      <hr>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row" *ngIf="moviesPopularity">
+    <div class="col-md-12">
+      <h1>Películas Populares</h1>
+    </div>
+    <div class="col-md-4" *ngFor="let movie of moviesPopularity" [routerLink]="['/movies/movie-detail', movie.id]">
+      <br>
+      <h5>
+        {{movie.title}} |
+        <small>{{movie.popularity}}</small>
+      </h5>
+
+
+      <img src="{{ImagesURL}}/w154{{movie.poster_path}}" height="231" *ngIf="movie.poster_path; else noImagesBlock" alt="">
+      <ng-template #noImagesBlock>
+        <img src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
+          height="231" width="154px" alt="">
+      </ng-template>
+
+      <hr>
     </div>
   </div>
 </div>

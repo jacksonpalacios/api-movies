@@ -23,12 +23,42 @@ export class MoviesService {
     let params = new URLSearchParams();
     let url = BaseURL + nextURL;
     params.set('api_key', ApiKey);
-    params.set('language', this.language);    
-    params.set('page', this.page);
+    params.set('language', this.language);        
     params.set('include_adult', IncludeAdult);
     params.set('include_image_language', 'es,null');
     params.set('append_to_response', 'videos,images');
 
+    
+    return this.http.get(url, { params: params }).map(res => {
+      return this.processHTTPMsg.extracData(res);
+    });
+  }
+
+  getMoviesNowPlaying(){
+    let nextURL = 'movie/now_playing';
+    let params = new URLSearchParams();
+    let url = BaseURL + nextURL;
+    params.set('api_key', ApiKey);
+    params.set('language', this.language);    
+    params.set('page', this.page);
+    params.set('include_adult', IncludeAdult);
+    params.set('include_image_language', 'es,null');
+    
+    return this.http.get(url, { params: params }).map(res => {
+      return this.processHTTPMsg.extracData(res);
+    });
+  }
+
+  getMoviesSortByPopularity(){
+    let nextURL = 'discover/movie';
+    let params = new URLSearchParams();
+    let url = BaseURL + nextURL;
+    params.set('api_key', ApiKey);
+    params.set('language', this.language);  
+    params.set('sort_by', 'popularity.desc');  
+    params.set('page', this.page);
+    params.set('include_adult', IncludeAdult);
+    params.set('include_image_language', 'es,null');
     
     return this.http.get(url, { params: params }).map(res => {
       return this.processHTTPMsg.extracData(res);

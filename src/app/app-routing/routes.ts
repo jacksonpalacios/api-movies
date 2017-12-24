@@ -13,6 +13,7 @@ export const routes: Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'search/:query', component: SearchComponent},
     {path: 'search/movie-detail/:id', component: MovieDetailComponent},
+    {path: 'movies/movie-detail/:id', component: MovieDetailComponent},
     {path: 'movies', component: MoviesComponent},
     {path: 'actors', component: ActorsComponent},
     
