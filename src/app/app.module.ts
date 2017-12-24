@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { YoutubePlayerModule } from 'ng2-youtube-player';
 import {
   MatCheckbox,
   MatFormField,
@@ -87,7 +88,8 @@ import { TrailerComponent } from './trailer/trailer.component';
     MatProgressSpinnerModule,
     MatRadioModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    YoutubePlayerModule
 
   ],
   providers: [
