@@ -27,8 +27,7 @@ export class MovieDetailComponent implements OnInit {
     return this.route.params
       .switchMap((params: Params) => this.moviesService.getMovie(+params['id']))
       .subscribe(res => {
-        this.movie = res;
-        console.log(this.movie);
+        this.movie = res;        
       },
       errmess => this.errMess = <any>errmess);
   }

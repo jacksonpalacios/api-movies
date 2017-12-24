@@ -1,9 +1,11 @@
 import { Movie } from './movie';
+import { Images } from './images';
 
 export class Actor {
     popularity: number;
     id: string;
-    profilePath: string;
+    profile_path: string;
     name: string;
-    knownFor: Movie[];     
+    known_for: Movie[];  
+    images: Images[];
 }

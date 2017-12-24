@@ -28,8 +28,7 @@ export class MoviesComponent implements OnInit {
   getNowPlaying(){
     return this.moviesService.getMoviesNowPlaying()
       .subscribe(res => {
-        this.moviesNowPlaying = res['results'];
-        console.log(this.moviesNowPlaying);
+        this.moviesNowPlaying = res['results'];        
       },
       errmess => this.errMessNowPlaying = <any>errmess);
   }
@@ -37,8 +36,7 @@ export class MoviesComponent implements OnInit {
   getPopularity(){
     return this.moviesService.getMoviesSortByPopularity()
       .subscribe(res => {
-        this.moviesPopularity = res['results'];
-        console.log(this.moviesPopularity);
+        this.moviesPopularity = res['results'];        
       },
       errmess => this.errMessPopularity = <any>errmess);
   }

@@ -1,7 +1,23 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      Actors
+    <div class="row" *ngIf="actorsPopularity">
+      <div class="col-md-12">
+        <h1>Actores Populares</h1>
+      </div>
+      <div class="col-md-4" *ngFor="let actor of actorsPopularity" [routerLink]="['/actors/actor-detail', actor.id]">
+        <br>
+        <h5>
+          {{actor.name}} |
+          <small>Popularidad: {{actor.popularity}}</small><br>                    
+        </h5>
+  
+  
+        <img src="{{ImagesURL}}/w154{{actor.profile_path}}" height="231" *ngIf="actor.profile_path; else noImagesBlock" alt="">
+        <ng-template #noImagesBlock>
+          <img src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
+            height="231" width="154px" alt="">
+        </ng-template>
+  
+        <hr>
+      </div>
     </div>
   </div>
-</div>
