@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { YoutubePlayerModule } from 'ng2-youtube-player';
 import {
   MatCheckbox,
   MatFormField,
@@ -19,7 +20,9 @@ import {
   MatFormFieldModule,
   MatSlideToggleModule,
   MatProgressSpinnerModule,
-  MatRadioModule
+  MatRadioModule,
+  MatMenuModule,
+  MatTooltipModule
 } from '@angular/material';
 import 'hammerjs';
 
@@ -43,6 +46,8 @@ import { MoviesComponent } from './movies/movies.component';
 import { ActorsComponent } from './actors/actors.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MoviesService } from './services/movies.service';
+import { GalleryImagesComponent } from './gallery-images/gallery-images.component';
+import { TrailerComponent } from './trailer/trailer.component';
 
 
 @NgModule({
@@ -57,7 +62,9 @@ import { MoviesService } from './services/movies.service';
     AboutComponent,
     MoviesComponent,
     ActorsComponent,
-    MovieDetailComponent 
+    MovieDetailComponent,
+    GalleryImagesComponent,
+    TrailerComponent 
   ],
   imports: [
     HttpModule,
@@ -79,7 +86,10 @@ import { MoviesService } from './services/movies.service';
     MatSlideToggleModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule,
+    MatTooltipModule,
+    YoutubePlayerModule
 
   ],
   providers: [
