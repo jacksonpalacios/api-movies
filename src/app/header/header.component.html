@@ -1,27 +1,43 @@
-<mat-toolbar color="primary" class="my-toolbar">
+<mat-toolbar color="" class="my-toolbar">
   <div class="container">
-    <span> Movies </span> |
+    <a mat-button class="" routerLink="/home" routerLinkActive="active">
+      <svg-icon src="/assets/images/video-play.svg" style="width:35px;"></svg-icon>
+    </a>
     <!--<a mat-button ><span class="fa fa-home fa-lg"></span> Home</a>-->
 
-    <a mat-button routerLink="/home" routerLinkActive="active">
-      <i class="material-icons">home</i> Home
-    </a>
-    <a mat-button routerLink="/movies" routerLinkActive="active">
-      <i class="material-icons">movie</i> Movies
-    </a>
-    <a mat-button routerLink="/actors" routerLinkActive="active">
-      <i class="material-icons">face</i> Actors
-    </a>
-    <a mat-button [routerLink]="['/search', '?']"  routerLinkActive="active">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLink="/home" routerLinkActive="active">
+        <i class="material-icons">home</i>
+        <span>Home</span>
+      </a>
+      <button mat-menu-item routerLink="/movies" routerLinkActive="active">
+        <i class="material-icons">movie</i>
+        <span>Movies</span>
+      </button>
+      <button mat-menu-item routerLink="/actors" routerLinkActive="active">
+        <i class="material-icons">face</i>
+        <span>Actors</span>
+      </button>
+      <button mat-menu-item routerLink="/about" routerLinkActive="active">
+        <i class="material-icons">bubble_chart</i> 
+        <span>About</span>
+      </button>
+    </mat-menu>
+
+
+    <a mat-button [routerLink]="['/search', '?']" routerLinkActive="active">
       <i class="material-icons">search</i> Search
     </a>
     <a mat-button routerLink="/about" routerLinkActive="active">
-      <i class="material-icons">bubble_chart</i> About
+      
     </a>
     <!--<a mat-button ><span class="fa fa-address-card fa-lg"></span> My List</a>-->
 
     <!-- <a mat-button ><span class="fa fa-address-card fa-lg"></span> Idioma</a>-->
-    <span class="flex-spacer"></span>
+    <span class="flex-spacer"></span>    
     <!--<a mat-button> <i class="material-icons">input</i> Login </a>-->
   </div>
 </mat-toolbar>

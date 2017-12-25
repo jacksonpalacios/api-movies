@@ -1,21 +1,22 @@
+<h1 class="title-section">
+  <svg-icon src="/assets/images/clapperboard.svg" style="width:90px;"></svg-icon>Películas</h1>
 <div class="container">
-  <div class="row" *ngIf="movies">
-    <div class="col-md-4" *ngFor="let movie of movies" [routerLink]="['/search/movie-detail', movie.id]">
+  <div class="row" *ngIf="movies">    
+    <div class="col-md-3" *ngFor="let movie of movies" >
+      <mat-card [routerLink]="['/search/movie-detail', movie.id]">
+        <mat-card-header>          
+          <mat-card-title class="click-pointer title-card">{{movie.title}}</mat-card-title>
+          <mat-card-subtitle>
+            <i class="material-icons" matTooltip="popularidad">trending_up</i>
+            {{movie.popularity}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="click-pointer" src="{{ImagesURL}}/w300{{movie.poster_path}}" alt="foto de {{movie.title}}">        
+        <mat-card-actions>
+          <button mat-button class="click-pinter">VER MÁS</button>          
+        </mat-card-actions>
+      </mat-card>
       <br>
-      <h5>
-        {{movie.title}} |
-        <small>{{movie.popularity}}</small>
-      </h5>
-
-
-      <img src="{{ImagesURL}}/w154{{movie.poster_path}}" height="231" *ngIf="movie.poster_path; else noImagesBlock" alt="">
-      <ng-template #noImagesBlock>
-        <img src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
-          height="231" width="154px" alt="">
-      </ng-template>
-
-      <hr>
     </div>
   </div>
-  <!--<ng-template #elseBlock>No se encontrarón resultados</ng-template>-->
 </div>

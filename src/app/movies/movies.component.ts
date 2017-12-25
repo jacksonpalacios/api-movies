@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { CollectionMovies } from '../shared/collectionmovies';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class MoviesComponent implements OnInit {
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) { }
 
-  ngOnInit() {
+  ngOnInit() {   
 
     this.getNowPlaying();
     this.getPopularity();

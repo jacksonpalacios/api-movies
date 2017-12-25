@@ -29,8 +29,7 @@ export class ActorDetailComponent implements OnInit {
     return this.route.params
       .switchMap((params: Params) => this.actorServices.getActorBiography(+params['id']))
       .subscribe(res => {
-        this.actorBiography = res;
-        console.log(res);
+        this.actorBiography = res;        
       },
       errmess => this.errMess = <any>errmess);
   }

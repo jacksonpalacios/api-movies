@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActorsService } from '../services/actors.service';
 import { CollectionActors } from '../shared/collectionactors';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-actors',
@@ -12,12 +13,17 @@ export class ActorsComponent implements OnInit {
   errMessPopularity: string;
 
   constructor(private actorsService: ActorsService,
+    private _sanitizer: DomSanitizer,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL
   ) { }
 
   ngOnInit() {
     this.getActorsPopularity();
+  }
+
+  getBackground(image) {
+    return this._sanitizer.bypassSecurityTrustStyle(` url(${image})`);
   }
 
   getActorsPopularity() {

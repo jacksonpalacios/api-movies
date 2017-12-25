@@ -10,8 +10,8 @@ import { CollectionMovies } from '../shared/collectionmovies';
 
 @Injectable()
 export class MoviesService {
-  private language: string;
-  private page: string;
+  language: string;
+  page: string;
 
   constructor(private http: Http,
     private processHTTPMsg: ProcessHttpmsgService) {
