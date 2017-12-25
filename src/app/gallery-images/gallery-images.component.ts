@@ -24,8 +24,7 @@ export class GalleryImagesComponent implements OnInit {
 
   ngOnInit() {
     
-    if ( this.images.backdrops) {
-      
+    if ( this.images.backdrops) {      
       this.backdrops = this.images.backdrops;
       this.posters = this.images.posters
     }else{

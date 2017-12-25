@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SvgIconRegistryService } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private iconReg:SvgIconRegistryService) { }
 
   ngOnInit() {
+    this.iconReg.loadSvg('foo.svg');
+    //this.iconReg.unloadSvg('foo.svg');
   }
 
 }

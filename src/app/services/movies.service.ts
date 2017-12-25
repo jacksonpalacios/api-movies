@@ -26,7 +26,7 @@ export class MoviesService {
     params.set('api_key', ApiKey);
     params.set('language', this.language);        
     params.set('include_adult', IncludeAdult);
-    params.set('include_image_language', 'es,null');
+    params.set('include_image_language', 'en,null');
     params.set('append_to_response', 'videos,images');
 
     

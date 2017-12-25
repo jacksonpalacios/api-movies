@@ -3,7 +3,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { YoutubePlayerModule } from 'ng2-youtube-player';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import {
   MatCheckbox,
   MatFormField,
@@ -92,7 +94,9 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
     MatRadioModule,
     MatMenuModule,
     MatTooltipModule,
-    YoutubePlayerModule
+    YoutubePlayerModule,
+    AngularSvgIconModule,
+    HttpClientModule
 
   ],
   providers: [
