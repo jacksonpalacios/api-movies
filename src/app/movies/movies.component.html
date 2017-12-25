@@ -1,48 +1,63 @@
-<div class="container">
-  <div class="row" *ngIf="moviesNowPlaying">
-    <div class="col-md-12">
-      <h1>Películas en Estreno</h1>
-    </div>
-    <div class="col-md-4" *ngFor="let movie of moviesNowPlaying" [routerLink]="['/movies/movie-detail', movie.id]">
-      <br>
-      <h5>
-        {{movie.title}} |
-        <small>{{movie.popularity}}</small>
-      </h5>
 
-
-      <img src="{{ImagesURL}}/w154{{movie.poster_path}}" height="231" *ngIf="movie.poster_path; else noImagesBlock" alt="">
-      <ng-template #noImagesBlock>
-        <img src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
-          height="231" width="154px" alt="">
+<div id="tabs-container" class="container">
+  <mat-tab-group class="demo-tab-group">
+    <mat-tab label="Peliculas en estreno">
+      <ng-template mat-tab-label>
+        <svg-icon src="/assets/images/film-reel.svg" style="width:30px;"></svg-icon> <span> películas en estreno </span>
       </ng-template>
-
-      <hr>
-    </div>
-  </div>
-</div>
-
-
-<div class="container">
-  <div class="row" *ngIf="moviesPopularity">
-    <div class="col-md-12">
-      <h1>Películas Populares</h1>
-    </div>
-    <div class="col-md-4" *ngFor="let movie of moviesPopularity" [routerLink]="['/movies/movie-detail', movie.id]">
       <br>
-      <h5>
-        {{movie.title}} |
-        <small>{{movie.popularity}}</small>
-      </h5>
+      <h2 class="title-section">
+        <svg-icon src="/assets/images/film-reel.svg" style="width:40px;"></svg-icon>Películas en Estreno
+      </h2>
+
+      <div class="row" *ngIf="moviesNowPlaying">
+        <div class="col-md-3" *ngFor="let movie of moviesNowPlaying">
+          <mat-card [routerLink]="['/movies/movie-detail', movie.id]">
+            <mat-card-header>
+              <mat-card-title class="click-pointer title-card">{{movie.title}}</mat-card-title>
+              <mat-card-subtitle>
+                <i class="material-icons" matTooltip="popularidad">trending_up</i>
+                {{movie.popularity}}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image class="click-pointer" src="{{ImagesURL}}/w300{{movie.poster_path}}" alt="foto de {{movie.title}}">
+            <mat-card-actions>
+              <button mat-button class="click-pinter">VER MÁS</button>
+            </mat-card-actions>
+          </mat-card>
+          <br>
+        </div>
+      </div>
+
+    </mat-tab>
 
 
-      <img src="{{ImagesURL}}/w154{{movie.poster_path}}" height="231" *ngIf="movie.poster_path; else noImagesBlock" alt="">
-      <ng-template #noImagesBlock>
-        <img src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
-          height="231" width="154px" alt="">
+    <mat-tab label="Películas populares">
+      <ng-template mat-tab-label>
+        <svg-icon src="/assets/images/3d-glasses.svg" style="width:30px;"></svg-icon> <span> películas en populares </span>
       </ng-template>
-
-      <hr>
-    </div>
-  </div>
+      <br>
+      <h2 class="title-section">
+        <svg-icon src="/assets/images/3d-glasses.svg" style="width:40px;"></svg-icon> Películas Populares
+      </h2>
+      <div class="row" *ngIf="moviesPopularity">
+        <div class="col-md-3" *ngFor="let movie of moviesPopularity">
+          <mat-card [routerLink]="['/movies/movie-detail', movie.id]">
+            <mat-card-header>
+              <mat-card-title class="click-pointer title-card">{{movie.title}}</mat-card-title>
+              <mat-card-subtitle>
+                <i class="material-icons" matTooltip="popularidad">trending_up</i>
+                {{movie.popularity}}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image class="click-pointer" src="{{ImagesURL}}/w300{{movie.poster_path}}" alt="foto de {{movie.title}}">
+            <mat-card-actions>
+              <button mat-button class="click-pinter">VER MÁS</button>
+            </mat-card-actions>
+          </mat-card>
+          <br>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>

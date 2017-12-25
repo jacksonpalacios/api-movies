@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { CollectionActors } from '../shared/collectionactors';
 import { SearchService } from '../services/search.service';
 import { Observable } from 'rxjs/Observable';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/map';
@@ -24,6 +25,7 @@ export class SearchActorsComponent implements OnInit {
   
   constructor(
     private searchService: SearchService,
+    private _sanitizer: DomSanitizer,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) {
 
@@ -31,6 +33,10 @@ export class SearchActorsComponent implements OnInit {
 
   ngOnInit() {
     this.search();
+  }
+
+  getBackground(image) {
+    return this._sanitizer.bypassSecurityTrustStyle(` url(${image})`);
   }
 
   search() {

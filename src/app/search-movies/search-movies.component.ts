@@ -43,8 +43,7 @@ export class SearchMoviesComponent implements OnInit {
       .subscribe(query => {
         return this.searchService.getSearchMovies(query)
           .subscribe(res => {
-            this.movies = res['results'];
-            console.log(this.movies);
+            this.movies = res['results'];            
           },
           errmess => this.errMess = <any>errmess);
       });

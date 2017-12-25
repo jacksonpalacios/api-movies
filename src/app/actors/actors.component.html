@@ -1,7 +1,23 @@
+<h1 class="title-section">
+  <svg-icon src="/assets/images/man.svg" style="width:90px;"></svg-icon>Actores Populares</h1>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      Actors
+  <div class="row" *ngIf="actorsPopularity">    
+    <div class="col-md-3" *ngFor="let actor of actorsPopularity" >
+      <mat-card [routerLink]="['/actors/actor-detail', actor.id]">
+        <mat-card-header>
+          <div mat-card-avatar [style.background-image]="getBackground(ImagesURL+'/w45'+actor.profile_path)" class="avatar-header-image"></div>
+          <mat-card-title class="click-pointer title-card">{{actor.name}}</mat-card-title>
+          <mat-card-subtitle>
+            <i class="material-icons" matTooltip="popularidad">trending_up</i>
+            {{actor.popularity}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="click-pointer" src="{{ImagesURL}}/w300{{actor.profile_path}}" alt="foto de {{actor.name}}">        
+        <mat-card-actions>
+          <button mat-button class="click-pinter">VER MÁS</button>          
+        </mat-card-actions>
+      </mat-card>
+      <br>
     </div>
   </div>
 </div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row" *ngIf="actorBiography">
+    <div class="col-md-12">
+      <h1> {{actorBiography.name}}
+      </h1>
+      <hr class="line">
+      <h3>
+        <small>Popularidad: {{actorBiography.popularity}} - fecha nacimiento: {{actorBiography.birthday}} - Genero: {{actorBiography.gender}}
+        </small>
+      </h3>
+    </div>
+    <div class="col-md-8">
+      <h2>Biografía </h2>
+      {{actorBiography.biography}}
+    </div>
+    <div class="col-md-4">
+      <img src="{{ImagesURL}}/w500{{actorBiography.profile_path}}" class="img-responsive" *ngIf="actorBiography.profile_path; else noImagesBlock"
+        alt="">
+      <ng-template #noImagesBlock>
+        <img class="img-responsive" src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
+          alt="">
+      </ng-template>
+    </div>
+  </div>
+</div>
+<div *ngIf="actorBiography">
+  <app-gallery-images [images]="actorBiography.images"></app-gallery-images>
+</div>

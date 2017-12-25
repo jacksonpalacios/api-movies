@@ -3,7 +3,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { YoutubePlayerModule } from 'ng2-youtube-player';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import {
   MatCheckbox,
   MatFormField,
@@ -22,7 +24,8 @@ import {
   MatProgressSpinnerModule,
   MatRadioModule,
   MatMenuModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTabsModule
 } from '@angular/material';
 import 'hammerjs';
 
@@ -48,6 +51,8 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MoviesService } from './services/movies.service';
 import { GalleryImagesComponent } from './gallery-images/gallery-images.component';
 import { TrailerComponent } from './trailer/trailer.component';
+import { ActorsService } from './services/actors.service';
+import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 
 
 @NgModule({
@@ -64,7 +69,8 @@ import { TrailerComponent } from './trailer/trailer.component';
     ActorsComponent,
     MovieDetailComponent,
     GalleryImagesComponent,
-    TrailerComponent 
+    TrailerComponent,
+    ActorDetailComponent 
   ],
   imports: [
     HttpModule,
@@ -89,13 +95,17 @@ import { TrailerComponent } from './trailer/trailer.component';
     MatRadioModule,
     MatMenuModule,
     MatTooltipModule,
-    YoutubePlayerModule
+    YoutubePlayerModule,
+    AngularSvgIconModule,
+    HttpClientModule,
+    MatTabsModule
 
   ],
   providers: [
     SearchService,
     MoviesService,
     ProcessHttpmsgService,
+    ActorsService,
     { provide: 'BaseURL', useValue: BaseURL },
     { provide: 'ImagesURL', useValue: ImagesURL }
   ],   
