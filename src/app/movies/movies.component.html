@@ -1,9 +1,14 @@
-
+<div class="container">
+  <mat-paginator (click)="onNextPage()" [length]="length" [pageSize]="pageSize" (page)="pageEvent = $event">
+  </mat-paginator>
+  <input id="inputPageIndex" type="hidden" [value]="pageEvent?pageEvent.pageIndex:'0'">
+</div>
 <div id="tabs-container" class="container">
-  <mat-tab-group class="demo-tab-group">
+  <mat-tab-group class="demo-tab-group" (selectedTabChange)="onChangeTabs($event)">
     <mat-tab label="Peliculas en estreno">
       <ng-template mat-tab-label>
-        <svg-icon src="assets/images/film-reel.svg" style="width:30px;"></svg-icon> <span> películas en estreno </span>
+        <svg-icon src="assets/images/film-reel.svg" style="width:30px;"></svg-icon>
+        <span> películas en estreno </span>
       </ng-template>
       <br>
       <h2 class="title-section">
@@ -34,7 +39,8 @@
 
     <mat-tab label="Películas populares">
       <ng-template mat-tab-label>
-        <svg-icon src="assets/images/3d-glasses.svg" style="width:30px;"></svg-icon> <span> películas en populares </span>
+        <svg-icon src="assets/images/3d-glasses.svg" style="width:30px;"></svg-icon>
+        <span> películas en populares </span>
       </ng-template>
       <br>
       <h2 class="title-section">

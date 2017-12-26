@@ -25,7 +25,8 @@ import {
   MatRadioModule,
   MatMenuModule,
   MatTooltipModule,
-  MatTabsModule
+  MatTabsModule,
+  MatPaginatorModule
 } from '@angular/material';
 import 'hammerjs';
 
@@ -98,7 +99,8 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
     YoutubePlayerModule,
     AngularSvgIconModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    MatPaginatorModule
 
   ],
   providers: [

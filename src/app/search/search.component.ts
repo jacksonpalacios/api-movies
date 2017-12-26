@@ -11,6 +11,7 @@ import { SearchService } from '../services/search.service';
 import { CollectionActors } from '../shared/collectionactors';
 import { CollectionMovies } from '../shared/collectionmovies';
 import { SearchActorsComponent } from '../search-actors/search-actors.component';
+import { ListenChangeLanguage } from '../shared/baseurl';
 
 @Component({
   selector: 'app-search',
@@ -36,43 +37,27 @@ export class SearchComponent implements OnInit {
       'maxlength': 'El texto a buscar no debe ser mayor a 25 caracteres'
     }
   }
-
-
-  constructor(private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private location: Location,
-    private router: Router) {
+  constructor(private fb: FormBuilder
+    ) {
     this.page = 1;
     this.createForm();
+    
   }
 
   ngOnInit() {
+    
 
   }
 
   /*
    Se crea el formulario reactivo
   */
-  createForm() {
-    let p:string = "";
-    this.route.params
-      .switchMap((params: Params) => params['query'])
-      .subscribe(res => {
-        p += res;        
-      });
-    p = p=="?"?"":p;
+  createForm() {    
     this.searchForm = this.fb.group({
       query: ['', [Validators.minLength(3), Validators.maxLength(25)]],
       valueSearchType: 'Movies'
     });
-
-    this.searchForm.controls.query.setValue(p);    
-
-    this.searchForm.controls.query.valueChanges
-      .subscribe(res => {        
-        this.router.navigate(['/search', res]);
-      });
-
+    
     /*
       Se realiza la petición cada vez query cambie de valor
     */

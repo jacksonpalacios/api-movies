@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { ListenChangeLanguage } from '../shared/baseurl';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class SearchActorsComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    ListenChangeLanguage(() => this.search());
     this.search();
   }
 
@@ -40,8 +43,7 @@ export class SearchActorsComponent implements OnInit {
   }
 
   search() {
-    let searchField = document.querySelector('#query');
-
+    let searchField = document.querySelector('#query');    
     Observable.fromEvent(searchField, 'input')
       .pluck('target', 'value')
       .filter((searchText: string) => { return searchText.length > 2 })

@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 import { Biography } from '../shared/biography';
+import { ListenChangeLanguage } from '../shared/baseurl';
 
 @Component({
   selector: 'app-actor-detail',
@@ -25,7 +26,13 @@ export class ActorDetailComponent implements OnInit {
     @Inject('ImagesURL') private ImagesURL) { }
 
   ngOnInit() {
+    ListenChangeLanguage(() => this.getActorBiography());
 
+    this.getActorBiography();
+    
+  }
+
+  getActorBiography(){
     return this.route.params
       .switchMap((params: Params) => this.actorServices.getActorBiography(+params['id']))
       .subscribe(res => {

@@ -11,8 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private iconReg:SvgIconRegistryService) { }
 
   ngOnInit() {
-    this.iconReg.loadSvg('foo.svg');
-    //this.iconReg.unloadSvg('foo.svg');
+    //ListenChangeLanguage(()=> this.getActorsPopularity());
   }
 
 }

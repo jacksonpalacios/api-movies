@@ -2,3 +2,18 @@
     position: fixed;
     z-index: 2;    
 }
+
+.mat-form-field-infix {
+    padding: .4375em 0;
+    border-top: .84375em solid transparent;
+}
+
+.my-toolbar mat-form-field{
+    font-size: 14px !important;
+}
+
+.country-icon{
+    margin-top: 13px !important;
+    position: absolute;
+    margin-left: -29px;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import {} from 'ng2-youtube-player'
 import { Videos } from '../shared/videos';
+import { ListenChangeLanguage } from '../shared/baseurl';
 
 @Component({
   selector: 'app-trailer',
@@ -15,7 +16,11 @@ export class TrailerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.set();
+  }
+
+  set(){
     this.trailers = this.videosmovie;
   }
 

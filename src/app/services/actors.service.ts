@@ -10,12 +10,11 @@ import { Biography } from '../shared/biography';
 
 @Injectable()
 export class ActorsService {
-  private language: string;
-  private page: string;
+  public static language: string = 'es-ES';;
+  page: string;
 
   constructor(private http: Http,
-    private processHTTPMsg: ProcessHttpmsgService) {
-    this.language = 'es-ES';
+    private processHTTPMsg: ProcessHttpmsgService) {    
     this.page = '1';
   }
 
@@ -24,7 +23,7 @@ export class ActorsService {
     let params = new URLSearchParams();
     let url = BaseURL + nextURL;
     params.set('api_key', ApiKey);
-    params.set('language', this.language);      
+    params.set('language', ActorsService.language);      
     params.set('page', this.page);
         
     return this.http.get(url, { params: params }).map(res => {
@@ -37,7 +36,7 @@ export class ActorsService {
     let params = new URLSearchParams();
     let url = BaseURL + nextURL;
     params.set('api_key', ApiKey);
-    params.set('language', this.language);      
+    params.set('language', ActorsService.language);      
     params.set('append_to_response', 'images');
     return this.http.get(url, { params: params }).map(res => {
       return this.processHTTPMsg.extracData(res);

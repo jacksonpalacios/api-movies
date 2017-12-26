@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ImagesMovie } from '../shared/imagesmovie'
 import { Images } from '../shared/images';
 import { Profile } from '../shared/profile';
+import { ListenChangeLanguage } from '../shared/baseurl';
 
 @Component({
   selector: 'app-gallery-images',
@@ -23,14 +24,16 @@ export class GalleryImagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    if ( this.images.backdrops) {      
+    ListenChangeLanguage(() => this.set());
+    this.set();
+  }
+  set() {
+    if (this.images.backdrops) {
       this.backdrops = this.images.backdrops;
       this.posters = this.images.posters
-    }else{
+    } else {
       this.profileImages = this.images.profiles;
     }
-
   }
 
 }

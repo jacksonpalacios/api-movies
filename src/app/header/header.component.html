@@ -28,7 +28,7 @@
     </mat-menu>
 
 
-    <a mat-button [routerLink]="['/search', '?']" routerLinkActive="active">
+    <a mat-button routerLink="/search" routerLinkActive="active">
       <i class="material-icons">search</i> Search
     </a>
     <a mat-button routerLink="/about" routerLinkActive="active">
@@ -37,7 +37,15 @@
     <!--<a mat-button ><span class="fa fa-address-card fa-lg"></span> My List</a>-->
 
     <!-- <a mat-button ><span class="fa fa-address-card fa-lg"></span> Idioma</a>-->
-    <span class="flex-spacer"></span>    
+    <span class="flex-spacer"></span>   
+    <svg-icon class="country-icon" src="{{languages[indexLanguageSelected].url_icon}}" style="width:25px;"></svg-icon> 
+    <mat-form-field>
+        <mat-select id="idselectLanguage"  [(value)]="indexLanguageSelected" (change)="selectLanguage($event)">
+          <mat-option class="selectLanguage" [value]="i" *ngFor="let language of languages; let i=index">
+              <svg-icon src="{{language.url_icon}}" style="width:25px;"></svg-icon> {{language.name_languge}}
+          </mat-option>          
+        </mat-select>
+      </mat-form-field>
     <!--<a mat-button> <i class="material-icons">input</i> Login </a>-->
   </div>
 </mat-toolbar>

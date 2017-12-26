@@ -10,19 +10,16 @@ import { ProcessHttpmsgService } from './process-httpmsg.service';
 
 @Injectable()
 export class SearchService {
-  private language: string;
-  private page: string;
-
+  public static language: string = 'es-ES';;
+  page: string;
   /*
    Otros atributos específicos para buscar películas
   */
   private year: number;
   private primaryReleaseYear: number;
-
-
   constructor(private http: Http,
     private processHTTPMsg: ProcessHttpmsgService) {
-    this.language = 'es-ES';
+    
     this.page = '1';
   }
 
@@ -32,7 +29,7 @@ export class SearchService {
     let url = BaseURL + nextURL;
 
     params.set('api_key', ApiKey);
-    params.set('language', this.language);
+    params.set('language', SearchService.language);
     params.set('query', query);
     params.set('page', this.page);
     params.set('include_adult', IncludeAdult);
@@ -48,7 +45,7 @@ export class SearchService {
     let url = BaseURL + nextURL;
 
     params.set('api_key', ApiKey);
-    params.set('language', this.language);
+    params.set('language', SearchService.language);
     params.set('query', query);
     params.set('page', this.page);
     params.set('include_adult', IncludeAdult);

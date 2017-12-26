@@ -10,13 +10,14 @@ import { CollectionMovies } from '../shared/collectionmovies';
 
 @Injectable()
 export class MoviesService {
-  language: string;
+  public static language: string = 'es-ES';
   page: string;
+  
 
   constructor(private http: Http,
-    private processHTTPMsg: ProcessHttpmsgService) {
-    this.language = 'es-ES';
+    private processHTTPMsg: ProcessHttpmsgService) {    
     this.page = '1';
+    
   }
 
   getMovie(id): Observable<Movie>{    
@@ -24,7 +25,7 @@ export class MoviesService {
     let params = new URLSearchParams();
     let url = BaseURL + nextURL;
     params.set('api_key', ApiKey);
-    params.set('language', this.language);        
+    params.set('language', MoviesService.language);        
     params.set('include_adult', IncludeAdult);
     params.set('include_image_language', 'en,null');
     params.set('append_to_response', 'videos,images');
@@ -40,7 +41,7 @@ export class MoviesService {
     let params = new URLSearchParams();
     let url = BaseURL + nextURL;
     params.set('api_key', ApiKey);
-    params.set('language', this.language);    
+    params.set('language', MoviesService.language);    
     params.set('page', this.page);
     params.set('include_adult', IncludeAdult);
     params.set('include_image_language', 'es,null');
@@ -55,7 +56,7 @@ export class MoviesService {
     let params = new URLSearchParams();
     let url = BaseURL + nextURL;
     params.set('api_key', ApiKey);
-    params.set('language', this.language);  
+    params.set('language', MoviesService.language);  
     params.set('sort_by', 'popularity.desc');  
     params.set('page', this.page);
     params.set('include_adult', IncludeAdult);

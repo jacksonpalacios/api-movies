@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActorsService } from '../services/actors.service';
 import { CollectionActors } from '../shared/collectionactors';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { ListenChangeLanguage } from '../shared/baseurl';
 
 @Component({
   selector: 'app-actors',
@@ -19,6 +20,9 @@ export class ActorsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    ListenChangeLanguage(()=> this.getActorsPopularity());
+    
     this.getActorsPopularity();
   }
 
@@ -31,6 +35,8 @@ export class ActorsComponent implements OnInit {
       .subscribe(res => this.actorsPopularity = res['results'],
       errmess => this.errMessPopularity = <any>errmess);
   }
+
+  
 
 
 
