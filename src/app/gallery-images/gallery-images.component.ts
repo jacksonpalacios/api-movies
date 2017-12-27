@@ -23,8 +23,7 @@ export class GalleryImagesComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    ListenChangeLanguage(() => this.set());
+  ngOnInit() {    
     this.set();
   }
   set() {

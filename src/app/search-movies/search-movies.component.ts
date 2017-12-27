@@ -20,22 +20,20 @@ export class SearchMoviesComponent implements OnInit {
 
   public movies: CollectionMovies;
   private errMess: string;
-  
-  
+
+
   constructor(
     private searchService: SearchService,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) {
-
+    ListenChangeLanguage(() => this.search());
   }
 
   ngOnInit() {
-    
-    ListenChangeLanguage(() => this.search());
     this.search();
   }
 
-  search() {    
+  search() {
     let searchField = document.querySelector('#query');
     Observable.fromEvent(searchField, 'input')
       .pluck('target', 'value')
@@ -45,7 +43,7 @@ export class SearchMoviesComponent implements OnInit {
       .subscribe(query => {
         return this.searchService.getSearchMovies(query)
           .subscribe(res => {
-            this.movies = res['results'];            
+            this.movies = res['results'];
           },
           errmess => this.errMess = <any>errmess);
       });

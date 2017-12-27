@@ -17,12 +17,11 @@ export class ActorsComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL
-  ) { }
-
-  ngOnInit() {
-
+  ) { 
     ListenChangeLanguage(()=> this.getActorsPopularity());
-    
+  }
+
+  ngOnInit() {    
     this.getActorsPopularity();
   }
 

@@ -23,13 +23,12 @@ export class ActorDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     @Inject('BaseURL') private BaseURL,
-    @Inject('ImagesURL') private ImagesURL) { }
+    @Inject('ImagesURL') private ImagesURL) {
+      ListenChangeLanguage(() => this.getActorBiography());
+     }
 
-  ngOnInit() {
-    ListenChangeLanguage(() => this.getActorBiography());
-
-    this.getActorBiography();
-    
+  ngOnInit() {    
+    this.getActorBiography();    
   }
 
   getActorBiography(){

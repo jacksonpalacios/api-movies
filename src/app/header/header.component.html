@@ -39,7 +39,7 @@
     <!-- <a mat-button ><span class="fa fa-address-card fa-lg"></span> Idioma</a>-->
     <span class="flex-spacer"></span>   
     <svg-icon class="country-icon" src="{{languages[indexLanguageSelected].url_icon}}" style="width:25px;"></svg-icon> 
-    <mat-form-field>
+    <mat-form-field class="selectFormLanguage">
         <mat-select id="idselectLanguage"  [(value)]="indexLanguageSelected" (change)="selectLanguage($event)">
           <mat-option class="selectLanguage" [value]="i" *ngFor="let language of languages; let i=index">
               <svg-icon src="{{language.url_icon}}" style="width:25px;"></svg-icon> {{language.name_languge}}

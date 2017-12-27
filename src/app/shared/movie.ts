@@ -1,7 +1,9 @@
+import { Videos } from "./videos";
+
 export class Movie {
     voteCount: number;
     id: string;
-    video: boolean;
+    video: boolean;    
     voteAverage: string;
     title: string;
     popularity: number;

@@ -23,18 +23,16 @@ export class SearchActorsComponent implements OnInit {
 
   errMess: string;
   actors: CollectionActors;
-  
+
   constructor(
     private searchService: SearchService,
     private _sanitizer: DomSanitizer,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) {
-
+    ListenChangeLanguage(() => this.search());
   }
 
   ngOnInit() {
-    
-    ListenChangeLanguage(() => this.search());
     this.search();
   }
 
@@ -43,7 +41,7 @@ export class SearchActorsComponent implements OnInit {
   }
 
   search() {
-    let searchField = document.querySelector('#query');    
+    let searchField = document.querySelector('#query');
     Observable.fromEvent(searchField, 'input')
       .pluck('target', 'value')
       .filter((searchText: string) => { return searchText.length > 2 })

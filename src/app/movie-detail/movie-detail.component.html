@@ -1,56 +1,73 @@
-<div class="container">
-  <div class="row" *ngIf="movie">
+<div class="container" *ngIf="movie">
+  <div class="row">
     <div class="col-md-12">
-      <h1> {{movie.title}}
-      </h1>
-      <hr class="line">
-      <h3>
-        <small>{{movie.tagline}} - voto promedio: {{movie.vote_average}} - fecha lanzamiento {{movie.release_date}}</small>
-      </h3>
+      <h2 class="">
+        {{movie.title}}
+        <small class="subtitle-section">
+          <svg-icon src="assets/images/price-tag.svg" matTooltip="tag" style="width:20px;"></svg-icon>
+          {{movie.tagline}} |
+          <svg-icon src="assets/images/star.svg" matTooltip="voto promedio" style="width:20px;"></svg-icon>
+          {{movie.vote_average}} |
+          <svg-icon src="assets/images/calendar.svg" matTooltip="fecha lanzamiento" style="width:20px;"></svg-icon>
+          {{movie.release_date}}
+        </small>
+      </h2>
     </div>
-    <div class="col-md-9">
-      <img src="{{ImagesURL}}/w780{{movie.backdrop_path}}" class="img-responsive" *ngIf="movie.backdrop_path; else noImagesBlock"
-        alt="">
-      <ng-template #noImagesBlock>
-        <img class="img-responsive" src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
-          alt="">
-      </ng-template>
-    </div>
-
-    <div class="col-md-3">
-      <h4>Opciones: </h4>
-      <button mat-button matTooltip="Ver videos!">
-        <i class="material-icons">play_circle_outline</i> Trailer
-      </button>
-
-      <hr>
-      <h4>Acciones: </h4>
+    <div class="col-md-12">
       <button mat-icon-button matTooltip="Votar!">
-          <i class="material-icons">star</i>
-        </button>
+        <i class="material-icons">star</i>
+      </button>
       <button mat-icon-button matTooltip="Agregar a favorito">
         <i class="material-icons">favorite_border</i>
       </button>
       <button mat-icon-button matTooltip="Agregar a mi lista">
         <i class="material-icons">playlist_add</i>
       </button>
-
-    </div>
-    <div class="col-md-12">
-
-      <h4>
-        Sinopsis:
-      </h4>
-      <p>
-        {{movie.overview}}
-      </p>
-
     </div>
   </div>
 </div>
-<div *ngIf="movie">
-  <app-trailer [videosmovie] ="movie.videos.results"></app-trailer>
-</div>
-<div *ngIf="movie">
-  <app-gallery-images [images]="movie.images"></app-gallery-images>
+
+<div id="tabs-container" class="container" *ngIf="movie">
+  <mat-tab-group class="demo-tab-group" (selectedTabChange)="onChangeTabs($event)">
+    <mat-tab label="informacion" *ngIf="movie">
+      <ng-template mat-tab-label>
+        <svg-icon src="assets/images/film-reel.svg" style="width:30px;"></svg-icon>
+        <span> Información </span>
+      </ng-template>
+      <br>
+      <div class="row">
+        <div class="col-md-7">
+          <img src="{{ImagesURL}}/w780{{movie.backdrop_path}}" class="img-responsive" *ngIf="movie.backdrop_path; else noImagesBlock"
+            alt="">
+          <ng-template #noImagesBlock>
+            <img class="img-responsive" src="https://vignette3.wikia.nocookie.net/futperex/images/8/84/Vac%C3%ADo.png/revision/latest?cb=20150625220856&path-prefix=es"
+              alt="">
+          </ng-template>
+        </div>
+        <div class="col-md-5">
+          <h4> Sinopsis: </h4>
+          <p> {{movie.overview}} </p>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="informacion" *ngIf="movie">
+      <ng-template mat-tab-label>
+        <svg-icon src="assets/images/film-reel.svg" style="width:30px;"></svg-icon>
+        <span> Imágenes </span>
+      </ng-template>
+      <br>
+      <app-gallery-images [images]="movie.images" *ngIf="movie.images"></app-gallery-images>
+    </mat-tab>
+  </mat-tab-group>
+  <div class="row" *ngIf="trailers[0]">
+    <div class="col-md-12">
+      <h2>Trailers</h2>
+    </div>
+    <div class="col-md-4" *ngFor="let trailer of trailers">
+      <div id="player">
+        <youtube-player [videoId]="trailer.key" *ngIf="trailer.key" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
+      </div>
+    </div>
+  </div>
 </div>

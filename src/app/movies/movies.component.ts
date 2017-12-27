@@ -29,12 +29,14 @@ export class MoviesComponent implements OnInit {
 
   constructor(private moviesService: MoviesService,
     @Inject('BaseURL') private BaseURL,
-    @Inject('ImagesURL') private ImagesURL) { }
+    @Inject('ImagesURL') private ImagesURL) {
+    ListenChangeLanguage(() => this.getPopularity());
+    ListenChangeLanguage(() => this.getNowPlaying());
+  }
 
 
   ngOnInit() {
-    ListenChangeLanguage(()=> this.getPopularity());
-    ListenChangeLanguage(()=> this.getNowPlaying());
+
 
     this.getPopularity();
     this.getNowPlaying();
@@ -63,7 +65,7 @@ export class MoviesComponent implements OnInit {
       this.length = this.lengthPopularity;
     }
   }
-  
+
   getNowPlaying() {
     return this.moviesService.getMoviesNowPlaying()
       .subscribe(res => {
