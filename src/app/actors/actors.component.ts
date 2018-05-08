@@ -18,10 +18,11 @@ export class ActorsComponent implements OnInit {
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL
   ) { 
-    ListenChangeLanguage(()=> this.getActorsPopularity());
+    
   }
 
-  ngOnInit() {    
+  ngOnInit() {  
+    ListenChangeLanguage(()=> this.getActorsPopularity());  
     this.getActorsPopularity();
   }
 

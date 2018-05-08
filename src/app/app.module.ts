@@ -111,6 +111,7 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
     { provide: 'BaseURL', useValue: BaseURL },
     { provide: 'ImagesURL', useValue: ImagesURL }
   ],   
+  entryComponents: [HeaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

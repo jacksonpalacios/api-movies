@@ -24,18 +24,18 @@ export class ActorDetailComponent implements OnInit {
     private location: Location,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) {
-      ListenChangeLanguage(() => this.getActorBiography());
-     }
-
-  ngOnInit() {    
-    this.getActorBiography();    
+    ListenChangeLanguage(() => this.getActorBiography());
   }
 
-  getActorBiography(){
+  ngOnInit() {
+    this.getActorBiography();
+  }
+
+  getActorBiography() {
     return this.route.params
       .switchMap((params: Params) => this.actorServices.getActorBiography(+params['id']))
       .subscribe(res => {
-        this.actorBiography = res;        
+        this.actorBiography = res;
       },
       errmess => this.errMess = <any>errmess);
   }

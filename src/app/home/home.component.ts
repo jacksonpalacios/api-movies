@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { SvgIconRegistryService } from 'angular-svg-icon';
+import { Component, OnInit} from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
+
+
 
 @Component({
   selector: 'app-home',
@@ -8,10 +10,15 @@ import { SvgIconRegistryService } from 'angular-svg-icon';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private iconReg:SvgIconRegistryService) { }
+  constructor() { }
 
   ngOnInit() {
+
+    
     //ListenChangeLanguage(()=> this.getActorsPopularity());
   }
 
+  
+
+ 
 }

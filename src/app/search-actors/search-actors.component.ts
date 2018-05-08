@@ -42,18 +42,20 @@ export class SearchActorsComponent implements OnInit {
 
   search() {
     let searchField = document.querySelector('#query');
-    Observable.fromEvent(searchField, 'input')
-      .pluck('target', 'value')
-      .filter((searchText: string) => { return searchText.length > 2 })
-      .debounceTime(500)
-      .distinctUntilChanged()
-      .subscribe(query => {
-        return this.searchService.getSearchActors(query)
-          .subscribe(res => {
-            this.actors = res['results'];
-          },
-          errmess => this.errMess = <any>errmess);
-      });
+    if (searchField) {
+      Observable.fromEvent(searchField, 'input')
+        .pluck('target', 'value')
+        .filter((searchText: string) => { return searchText.length > 2 })
+        .debounceTime(500)
+        .distinctUntilChanged()
+        .subscribe(query => {
+          return this.searchService.getSearchActors(query)
+            .subscribe(res => {
+              this.actors = res['results'];
+            },
+            errmess => this.errMess = <any>errmess);
+        });
+    }
   }
 
 

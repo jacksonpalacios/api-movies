@@ -30,22 +30,21 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService: MoviesService,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) {
-    ListenChangeLanguage(() => this.getPopularity());
-    ListenChangeLanguage(() => this.getNowPlaying());
+    
   }
 
 
   ngOnInit() {
 
-
+    ListenChangeLanguage(() => this.getPopularity());
+    ListenChangeLanguage(() => this.getNowPlaying());
     this.getPopularity();
     this.getNowPlaying();
   }
 
   onNextPage() {
-    let inputPageIndex = document.querySelector('#inputPageIndex');
-    let numPage: number = 1 + parseInt(inputPageIndex.getAttribute('value'));
-    console.log(numPage);
+    let inputPageIndex = document.querySelector('#inputPageIndex');    
+    let numPage: number = 1 + parseInt(inputPageIndex.getAttribute('value'));    
     this.moviesService.page = "" + numPage;
     if (this.typeTabMovie == 'estreno') {
       this.getNowPlaying();
@@ -67,6 +66,7 @@ export class MoviesComponent implements OnInit {
   }
 
   getNowPlaying() {
+    console.log("getNowPlaying movies");
     return this.moviesService.getMoviesNowPlaying()
       .subscribe(res => {
         this.moviesNowPlaying = res['results'];

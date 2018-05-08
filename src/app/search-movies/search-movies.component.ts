@@ -30,23 +30,28 @@ export class SearchMoviesComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.search();
   }
 
   search() {
+
     let searchField = document.querySelector('#query');
-    Observable.fromEvent(searchField, 'input')
-      .pluck('target', 'value')
-      .filter((searchText: string) => { return searchText.length > 2 })
-      .debounceTime(500)
-      .distinctUntilChanged()
-      .subscribe(query => {
-        return this.searchService.getSearchMovies(query)
-          .subscribe(res => {
-            this.movies = res['results'];
-          },
-          errmess => this.errMess = <any>errmess);
-      });
+    if (searchField) {
+      Observable.fromEvent(searchField, 'input')
+        .pluck('target', 'value')
+        .filter((searchText: string) => { return searchText.length > 2 })
+        .debounceTime(500)
+        .distinctUntilChanged()
+        .subscribe(query => {
+          return this.searchService.getSearchMovies(query)
+            .subscribe(res => {
+              this.movies = res['results'];
+            },
+            errmess => this.errMess = <any>errmess);
+        });
+    }
+
   }
 
 

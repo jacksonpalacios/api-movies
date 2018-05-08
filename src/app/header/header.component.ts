@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { SearchService } from '../services/search.service';
 import { ActorsService } from '../services/actors.service';
+import { Output } from '@angular/core/src/metadata/directives';
+import { EventEmitter } from 'selenium-webdriver';
+import { HomeComponent } from '../home/home.component';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-header',
@@ -23,14 +27,17 @@ export class HeaderComponent implements OnInit {
 
   indexLanguageSelected: number = 0;
 
+
   constructor() { }
 
   ngOnInit() {
   }
-  selectLanguage(event){    
-    MoviesService.language = this.languages[event.value].name_languge;    
+  selectLanguage(event) {
+    
+    MoviesService.language = this.languages[event.value].name_languge;
     SearchService.language = this.languages[event.value].name_languge;
     ActorsService.language = this.languages[event.value].name_languge;
   }
+  
 
 }

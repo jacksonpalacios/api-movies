@@ -27,34 +27,32 @@ export class MovieDetailComponent implements OnInit {
     private location: Location,
     @Inject('BaseURL') private BaseURL,
     @Inject('ImagesURL') private ImagesURL) {
-      ListenChangeLanguage(() => this.getMovie());
-     }
+    ListenChangeLanguage(() => this.getMovie());
+  }
 
   ngOnInit() {
-
-    
     this.getMovie();
-
-  } 
+  }
 
   getMovie() {
+    console.log("getmovies detail-movies");
     return this.route.params
       .switchMap((params: Params) => this.moviesService.getMovie(+params['id']))
       .subscribe(res => {
         this.movie = res;
-        this.trailers = res['videos']['results'];        
+        this.trailers = res['videos']['results'];
       },
       errmess => this.errMess = <any>errmess);
   }
-  
+
   savePlayer(player) {
-    this.player = player;    
+    this.player = player;
   }
-  onChangeTabs(event){
-    
+  onChangeTabs(event) {
+
   }
 
-  onStateChange(event){
+  onStateChange(event) {
 
   }
 }

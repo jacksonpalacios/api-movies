@@ -1,18 +1,26 @@
 <div class="container" *ngIf="movie">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="">
+      <h2 class="title-movie-detail">
         {{movie.title}}
-        <small class="subtitle-section">
-          <svg-icon src="assets/images/price-tag.svg" matTooltip="tag" style="width:20px;"></svg-icon>
-          {{movie.tagline}} |
-          <svg-icon src="assets/images/star.svg" matTooltip="voto promedio" style="width:20px;"></svg-icon>
-          {{movie.vote_average}} |
-          <svg-icon src="assets/images/calendar.svg" matTooltip="fecha lanzamiento" style="width:20px;"></svg-icon>
-          {{movie.release_date}}
-        </small>
       </h2>
+        <small class="subtitle-section">
+          <div class="content-item">
+            <svg-icon src="assets/images/price-tag.svg" matTooltip="tag" style="width:10px;"></svg-icon>
+            {{movie.tagline || "no disponible. " }}
+          </div>
+          <div class="content-item">
+            <svg-icon src="assets/images/star.svg" matTooltip="voto promedio" style="width:10px;"></svg-icon>
+            {{movie.vote_average || "no disponible. " }}
+          </div>
+          <div class="content-item">
+            <svg-icon src="assets/images/calendar.svg" matTooltip="fecha lanzamiento" style="width:10px;"></svg-icon>
+            {{movie.release_date || "no disponible. "}}
+          </div>
+        </small>
+      
     </div>
+    <!--
     <div class="col-md-12">
       <button mat-icon-button matTooltip="Votar!">
         <i class="material-icons">star</i>
@@ -24,6 +32,7 @@
         <i class="material-icons">playlist_add</i>
       </button>
     </div>
+  -->
   </div>
 </div>
 
@@ -31,7 +40,7 @@
   <mat-tab-group class="demo-tab-group" (selectedTabChange)="onChangeTabs($event)">
     <mat-tab label="informacion" *ngIf="movie">
       <ng-template mat-tab-label>
-        <svg-icon src="assets/images/film-reel.svg" style="width:30px;"></svg-icon>
+        <svg-icon src="assets/images/info.svg" style="width:30px;"></svg-icon>
         <span> Información </span>
       </ng-template>
       <br>
@@ -53,7 +62,7 @@
 
     <mat-tab label="informacion" *ngIf="movie">
       <ng-template mat-tab-label>
-        <svg-icon src="assets/images/film-reel.svg" style="width:30px;"></svg-icon>
+        <svg-icon src="assets/images/pictures.svg" style="width:30px;"></svg-icon>
         <span> Imágenes </span>
       </ng-template>
       <br>
@@ -64,10 +73,15 @@
     <div class="col-md-12">
       <h2>Trailers</h2>
     </div>
+
     <div class="col-md-4" *ngFor="let trailer of trailers">
-      <div id="player">
-        <youtube-player [videoId]="trailer.key" *ngIf="trailer.key" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
+
+      <div *ngIf="trailer.key">
+        <div id="player">
+          <youtube-player [videoId]="trailer.key" *ngIf="trailer.key" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
